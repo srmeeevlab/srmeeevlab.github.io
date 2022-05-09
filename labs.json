@@ -1,0 +1,12 @@
+{
+    "labs": [
+        {
+            "name":"Power System Simulation Lab",
+            "repoName":"PSA"
+        },
+        {
+            "name":"Power System Operation and Control",
+            "repoName":"PSOC"
+        }
+    ]
+}

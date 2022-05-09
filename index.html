@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <nav>
+
+    </nav>
+    <div id="item-wrapper">
+
+    </div>
+    <template id="dashboardElement">
+        <a id="lab" href="/">
+            <div>
+                <div>
+    
+                </div>
+                <div id="lab-details">
+                    <span id="lab-name"></span>
+                </div>
+            </div>
+        </a>
+    </template>
+    <script>
+        fetch("./labs.json").then(res=>{
+            return(res.json());
+        }).then(_=>{
+           let labs = _["labs"];
+           const template = document.getElementById("dashboardElement");
+           const newLab = template.content.querySelector("a");
+           console.log(newLab);
+           labs.forEach(labData => {
+               const lab = document.importNode(newLab,true);
+               lab.id = labData["repoName"];
+               lab.href = "/"+labData["repoName"];
+               lab.querySelector("#lab-details").id = labData["repoName"] + "-details";
+               const nameContainer = lab.querySelector("#lab-name"); 
+               nameContainer.id = labData["repoName"] + "-name";
+               nameContainer.textContent = labData["name"];
+               document.getElementById("item-wrapper").appendChild(lab);
+           });
+        });
+    </script>
+</body>
+</html>
