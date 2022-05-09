@@ -24,7 +24,7 @@
     </div>
     <template id="dashboardElement">
         <a class="card col-md-3 m-2" id="lab" href="/">
-            <img class="card-img-top" src="./thumbnail/default.png" alt="" srcset="">
+            <img id="lab-image" class="card-img-top" src="./thumbnail/" alt="Thumbnail for the lab">
             <div class="card-body" id="lab-details">
                 <div class="card-text text-center" id="lab-name"></div>
             </div>
@@ -37,7 +37,6 @@
            let labs = _["labs"];
            const template = document.getElementById("dashboardElement");
            const newLab = template.content.querySelector("a");
-           console.log(newLab);
            labs.forEach(labData => {
                const lab = document.importNode(newLab,true);
                lab.id = labData["repoName"];
@@ -46,6 +45,9 @@
                const nameContainer = lab.querySelector("#lab-name"); 
                nameContainer.id = labData["repoName"] + "-name";
                nameContainer.textContent = labData["name"];
+               const imageElement = lab.querySelector("#lab-image");
+               imageElement.id = labData["repoName"] + "-image";
+               (labData["image"])?(imageElement.src+=labData["image"]):(imageElement.src+=labData["repoName"] + ".png");
                document.getElementById("item-wrapper").appendChild(lab);
            });
         });
