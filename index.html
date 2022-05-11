@@ -47,8 +47,8 @@
            const newLab = template.content.querySelector("div");
            labs.forEach(labData => {
                const lab = document.importNode(newLab,true);
-               lab.id = labData["repoName"];
-               lab.href = "/"+labData["repoName"];
+               lab.querySelector("a").id = labData["repoName"];
+               lab.querySelector("a").href = "/"+labData["repoName"];
                lab.querySelector("#lab-details").id = labData["repoName"] + "-details";
                const nameContainer = lab.querySelector("#lab-name"); 
                nameContainer.id = labData["repoName"] + "-name";
