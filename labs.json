@@ -9,6 +9,11 @@
             "name":"Power System Operation and Control Laboratory",
             "repoName":"PSOC",
             "image":"default.png"
+        },
+        {
+            "name":"Control Engineering Laboratory",
+            "repoName":"CE",
+            "image":"default.png"
         }
     ]
 }
