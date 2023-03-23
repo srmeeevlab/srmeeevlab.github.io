@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
@@ -24,7 +27,7 @@
         @media (min-width:800px) {
             iframe {
                 height: 800px;
-                
+
                 width: 1000px;
                 max-width: 100%;
                 /* display: flex; */
@@ -34,6 +37,7 @@
         }
     </style>
 </head>
+
 <body>
     <div id="body-wrapper">
         <nav class="d-flex justify-content-around align-items-center">
@@ -43,11 +47,11 @@
             <span id="nav-title" class="px-2">
                 Interactive Labs by the Department of Electrical and Electronics Engineering
             </span>
-            <a class="px-2" href="/" rel="noopener noreferrer">VLAB BRAND LOGO</a>
+            <img class="px-2" href="/" rel="noopener noreferrer" src="images/PALS_2.png" width="10%" alt="PALS LOGO">
         </nav>
         <div class="container">
             <div class="row mt-3" id="item-wrapper">
-    
+
             </div>
         </div>
         <template id="dashboardElement">
@@ -61,65 +65,71 @@
             </div>
         </template>
     </div>
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered ">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropLabel">Fill the form </h5>
-              <h6 class="" id="verify">Verifying ...</h6>
-              <button type="button" class="btn-close" id="form-close-gform" data-bs-dismiss="modal" aria-label="Close" ></button>
-            </div>
-            <div class="modal-body">
-                <div class="container pt-3 text-center modal-body ">
-                    <iframe src="https://forms.gle/a7yUPf6r3Ro2zK9i7" frameborder="0"></iframe>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Fill the form </h5>
+                    <h6 class="" id="verify">Verifying ...</h6>
+                    <button type="button" class="btn-close" id="form-close-gform" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
+                <div class="modal-body">
+                    <div class="container pt-3 text-center modal-body ">
+                        <iframe src="https://forms.gle/a7yUPf6r3Ro2zK9i7" frameborder="0"></iframe>
+                    </div>
+                </div>
+
             </div>
-        
-          </div>
         </div>
-      </div>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-      <script>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script>
         const quizModal = new bootstrap.Modal(document.getElementById("staticBackdrop"));
         quizModal.show()
         const but = document.getElementById("form-close-gform");
-    
+
         but.hidden = true;
         setTimeout(() => {
             document.getElementById("form-close-gform").hidden = false;
-            console.log("logged fuck u");
             clearInterval(veri);
             verify.hidden = true;
         }, 10000);
-    
+
         const verify = document.getElementById("verify");
         verify.hidden = true;
         const veri = setInterval(() => {
             verify.hidden = !verify.hidden;
         }, 1000);
-      </script>
+    </script>
     <script>
-        fetch("./labs.json").then(res=>{
-            return(res.json());
-        }).then(_=>{
-           let labs = _["labs"];
-           const template = document.getElementById("dashboardElement");
-           const newLab = template.content.querySelector("div");
-           labs.forEach(labData => {
-               const lab = document.importNode(newLab,true);
-               lab.querySelector("a").id = labData["repoName"];
-               lab.querySelector("a").href = "/"+labData["repoName"];
-               lab.querySelector("#lab-details").id = labData["repoName"] + "-details";
-               const nameContainer = lab.querySelector("#lab-name"); 
-               nameContainer.id = labData["repoName"] + "-name";
-               nameContainer.textContent = labData["name"];
-               const imageElement = lab.querySelector("#lab-image");
-               imageElement.id = labData["repoName"] + "-image";
-               (labData["image"])?(imageElement.src+=labData["image"]):(imageElement.src+=labData["repoName"] + ".png");
-               document.getElementById("item-wrapper").appendChild(lab);
-           });
+        fetch("./labs.json").then(res => {
+            return (res.json());
+        }).then(_ => {
+            let labs = _["labs"];
+            const template = document.getElementById("dashboardElement");
+            const newLab = template.content.querySelector("div");
+            labs.forEach(labData => {
+                const lab = document.importNode(newLab, true);
+                lab.querySelector("a").id = labData["repoName"];
+                lab.querySelector("a").href = "/" + labData["repoName"];
+                lab.querySelector("#lab-details").id = labData["repoName"] + "-details";
+                const nameContainer = lab.querySelector("#lab-name");
+                nameContainer.id = labData["repoName"] + "-name";
+                nameContainer.textContent = labData["name"];
+                const imageElement = lab.querySelector("#lab-image");
+                imageElement.id = labData["repoName"] + "-image";
+                (labData["image"]) ? (imageElement.src += labData["image"]) : (imageElement.src += labData["repoName"] + ".png");
+                document.getElementById("item-wrapper").appendChild(lab);
+            });
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
